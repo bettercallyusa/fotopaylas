@@ -36,8 +36,19 @@ jobs:
 
       - name: Android APK derle
         run: |
-          set -o pipefail
-          yes | buildozer -v android debug
+          set +e
+          yes | buildozer -v android debug 2>&1 | tee buildozer.log
+          result=${PIPESTATUS[1]}
+          echo "BUILD_EXIT_CODE=$result"
+          exit "$result"
+
+      - name: Hata kaydini yukle
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: Buildozer-hata-kaydi
+          path: buildozer.log
+          if-no-files-found: warn
 
       - name: APK dosyasini yukle
         uses: actions/upload-artifact@v4
