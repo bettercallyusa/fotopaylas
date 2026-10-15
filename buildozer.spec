@@ -1,1 +1,26 @@
+[app]
 
+title = FotoPaylaş
+package.name = fotopaylas
+package.domain = com.fotopaylas.app
+
+source.dir = .
+source.include_exts = py,kv,png,jpg,jpeg,atlas,ttf,json
+
+version = 0.1
+
+requirements = python3,kivy,requests,urllib3,certifi,idna,charset-normalizer
+
+orientation = portrait
+fullscreen = 0
+
+android.permissions = INTERNET
+
+android.api = 35
+android.minapi = 23
+android.archs = arm64-v8a
+
+[buildozer]
+
+log_level = 2
+warn_on_root = 1
